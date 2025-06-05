@@ -4,7 +4,7 @@
 
 ## Features
 
-### 1. Tshooting mx/mr/ms being unreachable in the dashboard:
+### 1. Troubleshooting mx/mr/ms being unreachable in the dashboard:
 ![](gifs/unreachable.gif)
 
 
