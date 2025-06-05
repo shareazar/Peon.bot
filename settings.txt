@@ -1,0 +1,5 @@
+version=0.0.1
+python=Python 3.8.0
+domain=com
+
+user=kamran.mirzayev

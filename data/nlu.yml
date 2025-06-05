@@ -1,0 +1,285 @@
+version: '3.1'
+
+nlu:
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - es
+    - ys
+    - yews
+    - yed
+    - yeap
+    - yup
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - it did
+    - confirm
+    - certainly
+    - I confirm
+    - confirmed
+    - I confirmed
+    - done
+    - absolutely
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - nope
+    - hell no
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hola
+    - hi
+    - hi there
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - greetings  
+
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - thanks, bye
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you bot?
+    - am I talking to a bot?
+    - are you an orc?
+    - are you orc?
+    - am I talking to an orc?
+    - are you that type of orc?
+    - for the horde!
+    - orcish
+    - zug-zug
+    - zug zug
+    - zugzug
+
+- intent: device_type
+  examples: |
+    - [mx]{"entity": "device_type"}
+    - [MX]{"entity": "device_type"}
+    - [firewall]{"entity": "device_type"}
+    - [meraki firewall]{"entity": "device_type"}
+    - [fw]{"entity": "device_type"}
+    - [meraki fw]{"entity": "device_type"}
+    - [meraki router]{"entity": "device_type"}
+    - [ms]{"entity": "device_type"}
+    - [MS]{"entity": "device_type"}
+    - [switch]{"entity": "device_type"}
+    - [meraki switch]{"entity": "device_type"}
+    - [sw]{"entity": "device_type"}
+    - [meraki sw]{"entity": "device_type"}
+    - [mr]{"entity": "device_type"}
+    - [MR]{"entity": "device_type"}
+    - [access point]{"entity": "device_type"}
+    - [meraki access point]{"entity": "device_type"}
+    - [ap]{"entity": "device_type"}
+    - [meraki ap]{"entity": "device_type"}
+
+- intent: power_led_off
+  examples: |
+    - none
+    - turned off
+    - no power
+    - no color
+    - there are no color
+
+- intent: power_led_amber
+  examples: |
+    - amber
+    - yellow
+    - red
+    - orange
+
+- intent: power_led_white
+  examples: |
+    - white
+    - gray
+
+- intent: power_led_rainbow
+  examples: |
+    - rainbow
+    - rainbowing
+    - changing colors
+    - changing colours
+    - switching color
+    - switching colors
+    - color constantly changing
+
+- intent: unreachable
+  examples: |
+    - [mx]{"entity": "device_type"} unreachable
+    - [mx]{"entity": "device_type"} offline
+    - [mx]{"entity": "device_type"} disconnected
+    - [mx]{"entity": "device_type"} not communicating with the cloud
+    - [MX]{"entity": "device_type"} unreachable
+    - [MX]{"entity": "device_type"} offline
+    - [MX]{"entity": "device_type"} disconnected
+    - [MX]{"entity": "device_type"} not communicating with the cloud
+    - [firewall]{"entity": "device_type"} unreachable
+    - [firewall]{"entity": "device_type"} offline
+    - [firewall]{"entity": "device_type"} disconnected
+    - [firewall]{"entity": "device_type"} not communicating with the cloud
+    - [meraki firewall]{"entity": "device_type"} unreachable
+    - [meraki firewall]{"entity": "device_type"} offline
+    - [meraki firewall]{"entity": "device_type"} disconnected
+    - [meraki firewall]{"entity": "device_type"} not communicating with the cloud
+    - [fw]{"entity": "device_type"} unreachable
+    - [fw]{"entity": "device_type"} offline
+    - [fw]{"entity": "device_type"} disconnected
+    - [fw]{"entity": "device_type"} not communicating with the cloud
+    - [meraki fw]{"entity": "device_type"} unreachable
+    - [meraki fw]{"entity": "device_type"} offline
+    - [meraki fw]{"entity": "device_type"} disconnected
+    - [meraki fw]{"entity": "device_type"} not communicating with the cloud
+    - [meraki router]{"entity": "device_type"} unreachable
+    - [meraki router]{"entity": "device_type"} offline
+    - [meraki router]{"entity": "device_type"} disconnected
+    - [meraki router]{"entity": "device_type"} not communicating with the cloud
+    - [ms]{"entity": "device_type"} unreachable
+    - [ms]{"entity": "device_type"} offline
+    - [ms]{"entity": "device_type"} disconnected
+    - [ms]{"entity": "device_type"} not communicating with the cloud
+    - [MS]{"entity": "device_type"} unreachable
+    - [MS]{"entity": "device_type"} offline
+    - [MS]{"entity": "device_type"} disconnected
+    - [MS]{"entity": "device_type"} not communicating with the cloud
+    - [switch]{"entity": "device_type"} unreachable
+    - [switch]{"entity": "device_type"} offline
+    - [switch]{"entity": "device_type"} disconnected
+    - [switch]{"entity": "device_type"} not communicating with the cloud
+    - [meraki switch]{"entity": "device_type"} unreachable
+    - [meraki switch]{"entity": "device_type"} offline
+    - [meraki switch]{"entity": "device_type"} disconnected
+    - [meraki switch]{"entity": "device_type"} not communicating with the cloud
+    - [sw]{"entity": "device_type"} unreachable
+    - [sw]{"entity": "device_type"} offline
+    - [sw]{"entity": "device_type"} disconnected
+    - [sw]{"entity": "device_type"} not communicating with the cloud
+    - [meraki sw]{"entity": "device_type"} unreachable
+    - [meraki sw]{"entity": "device_type"} offline
+    - [meraki sw]{"entity": "device_type"} disconnected
+    - [meraki sw]{"entity": "device_type"} not communicating with the cloud
+    - [mr]{"entity": "device_type"} unreachable
+    - [mr]{"entity": "device_type"} offline
+    - [mr]{"entity": "device_type"} disconnected
+    - [mr]{"entity": "device_type"} not communicating with the cloud
+    - [MR]{"entity": "device_type"} unreachable
+    - [MR]{"entity": "device_type"} offline
+    - [MR]{"entity": "device_type"} disconnected
+    - [MR]{"entity": "device_type"} not communicating with the cloud
+    - [ap]{"entity": "device_type"} unreachable
+    - [ap]{"entity": "device_type"} offline
+    - [ap]{"entity": "device_type"} disconnected
+    - [ap]{"entity": "device_type"} not communicating with the cloud
+    - [meraki ap]{"entity": "device_type"} unreachable
+    - [meraki ap]{"entity": "device_type"} offline
+    - [meraki ap]{"entity": "device_type"} disconnected
+    - [meraki ap]{"entity": "device_type"} not communicating with the cloud
+    - [access point]{"entity": "device_type"} unreachable
+    - [access point]{"entity": "device_type"} offline
+    - [access point]{"entity": "device_type"} disconnected
+    - [access point]{"entity": "device_type"} not communicating with the cloud
+    - [meraki access point]{"entity": "device_type"} unreachable
+    - [meraki access point]{"entity": "device_type"} offline
+    - [meraki access point]{"entity": "device_type"} disconnected
+    - [meraki access point]{"entity": "device_type"} not communicating with the cloud
+
+- intent: poe_switch
+  examples: |
+    - poe switch
+    - powered via poe switch
+    - power switch
+
+- intent: poe_injector
+  examples: |
+    - poe injector
+    - powered via poe injector
+    - power injector
+
+- intent: power_adapter
+  examples: |
+    - adapter
+    - powered via power adapter
+    - power adapter
+
+- intent: stop
+  examples: |
+    - stop
+    - stp
+    - stpo
+    - tsop
+    - sto
+    - halt
+    - end
+    - terminate
+    - finish
+    - cease
+    - finish
+    - close
+
+- intent: start
+  examples: |
+    - start
+    - begin
+    - commence
+    - run
+    - go
+    - shoot
+    - activate
+
+- synonym: mx
+  examples: |
+    - MX
+    - firewall
+    - meraki firewall
+    - fw
+    - meraki fw
+    - meraki router
+
+- synonym: ms
+  examples: |
+    - MS
+    - switch
+    - meraki switch
+    - sw
+    - meraki sw
+
+- synonym: mr
+  examples: |
+    - MR
+    - access point
+    - meraki access point
+    - ap
+    - meraki ap

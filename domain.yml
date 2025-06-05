@@ -1,0 +1,601 @@
+version: '3.1'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+intents:
+- greet_start
+- greet
+- goodbye
+- affirm
+- deny
+- bot_challenge
+- unreachable
+- device_type
+- power_led_off
+- power_led_amber
+- power_led_white
+- power_led_rainbow
+- poe_switch
+- poe_injector
+- power_adapter
+- stop
+- start
+
+entities:
+- device_type
+- commands_category
+
+# We are using dynamic forms for gathering the slot values. Technically, it is not necessary to specify the required_slots
+# since the custom actions specify the next slot that should be asked from the user. The reason why we are specifying
+# required_slots here is because I was not able to make dynamic forms work without specifying at least one required slot
+forms:
+  tshoot_form:
+    required_slots:
+      - power_led_color
+      - device_type
+
+slots:
+  device_type:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: device_type
+      - type: from_intent
+        intent: device_type
+        value: device_type
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: device_type
+          - active_loop: commands_form
+            requested_slot: device_type
+          - active_loop: collect_logs_form
+            requested_slot: device_type
+
+#Slots for tshoot_form:
+  power_led_color:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      intent: power_led_off
+      value: power_led_off
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_led_color
+    - type: from_intent
+      intent: power_led_amber
+      value: power_led_amber
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_led_color
+    - type: from_intent
+      intent: power_led_white
+      value: power_led_white
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_led_color
+    - type: from_intent
+      intent: power_led_rainbow
+      value: power_led_rainbow
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_led_color
+  power_mx_ms:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_mx_ms
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_mx_ms
+  power_source_mr:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: poe_switch
+      intent: poe_switch
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_source_mr
+    - type: from_intent
+      value: poe_injector
+      intent: poe_injector
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_source_mr
+    - type: from_intent
+      value: power_adapter
+      intent: power_adapter
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_source_mr
+  power_poe_switch:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_poe_switch
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_poe_switch
+  power_poe_injector:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_poe_injector
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: power_poe_injector
+  uplink_lights:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: uplink_lights
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: uplink_lights
+  uplink_check:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: uplink_check
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: uplink_check
+  laptop_bypass:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: laptop_bypass
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: laptop_bypass
+  lsp_access:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: lsp_access
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: lsp_access
+  lsp_allowed:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        value: affirm
+        intent: affirm
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: lsp_allowed
+      - type: from_intent
+        value: deny
+        intent: deny
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: lsp_allowed
+  client_lights:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: client_lights
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: client_lights
+  client_layer1:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: client_layer1
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: client_layer1
+  client_check:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        value: affirm
+        intent: affirm
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: client_check
+      - type: from_intent
+        value: deny
+        intent: deny
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: client_check
+  lsp_wireless:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        value: affirm
+        intent: affirm
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: lsp_wireless
+      - type: from_intent
+        value: deny
+        intent: deny
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: lsp_wireless
+  lsp_check:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        value: affirm
+        intent: affirm
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: lsp_check
+      - type: from_intent
+        value: deny
+        intent: deny
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: lsp_check
+  upstream_access:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        value: affirm
+        intent: affirm
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: upstream_access
+      - type: from_intent
+        value: deny
+        intent: deny
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: upstream_access
+  check_stp:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        value: affirm
+        intent: affirm
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: check_stp
+      - type: from_intent
+        value: deny
+        intent: deny
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: check_stp
+  uplink_pcap:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        value: affirm
+        intent: affirm
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: uplink_pcap
+      - type: from_intent
+        value: deny
+        intent: deny
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: uplink_pcap
+  pcap_source_any:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        value: affirm
+        intent: affirm
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: pcap_source_any
+      - type: from_intent
+        value: deny
+        intent: deny
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: pcap_source_any
+  connection_monitor:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        value: affirm
+        intent: affirm
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: connection_monitor
+      - type: from_intent
+        value: deny
+        intent: deny
+        conditions:
+          - active_loop: tshoot_form
+            requested_slot: connection_monitor
+  factory_reset:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: factory_reset
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: factory_reset
+  factory_reset_stack:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: factory_reset_stack
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: factory_reset_stack
+  check_stack:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: affirm
+      intent: affirm
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: check_stack
+    - type: from_intent
+      value: deny
+      intent: deny
+      conditions:
+      - active_loop: tshoot_form
+        requested_slot: check_stack
+  answers:
+    type: any
+    mappings:
+      - type: custom
+        conditions:
+        - active_loop: tshoot_form
+        - active_loop: collect_logs_form
+  tshoot_step:
+    type: text
+    mappings:
+      - type: custom
+        conditions:
+        - active_loop: tshoot_form
+
+responses:
+  utter_greet_start:
+  - text: Hey and welcome! How can I help you?
+  utter_greet:
+  - text: Hey! How can I help you?
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_goodbye:
+  - text: Bye
+  utter_zugzug:
+  - text: zug zug
+  utter_ask_power_led_color:
+  - text: What power LED color do you see on the device?
+  utter_ask_device_type:
+  - text: What is the device type?
+  utter_ask_mx_power_switch:
+  - text: Is the power switch on the back of the MX is on? Note that MX60, MX64/W and MX65/W do not have a power switch on the back
+  utter_ask_power_mx_ms:
+  - text: |
+      Does the issue persist after performing the following troubleshooting steps?
+      - connecting the device to a different power source;
+      - using a different power cable;
+  utter_ask_power_poe_switch:
+  - text: |
+      Does the issue persist after performing the following troubleshooting steps?
+      - If MR is connected to a switch through a patch panel, unplug it from the patch panel and connect it directly to the switch. This is to test if the issue is related to a cable run or patch panel;
+      - Try using a different known working cable and ensure that it is less than 100 meters in length;
+      - Try another known working switchport that powers another Cisco Meraki AP and ensure that the switchport that the AP is plugged into is enabled and has PoE enabled;
+      - Try using a different switch and ensure the switch is IEEE 802.3af (or IEEE 802.3at) certified;
+  utter_ask_power_poe_injector:
+  - text: |
+      Does the issue persist after performing the following troubleshooting steps?
+      - If MR is connected to a switch through a patch panel, unplug it from the patch panel and connect it directly to the switch. This is to test if the issue is related to a cable run or patch panel;
+      - Replace cabling between the AP and “out” jack on the PoE injector, and the cable from the “in” jack on the PoE injector to the LAN. Ensure all Ethernet cabling is less than 100 meters in length;
+  utter_ask_power_source_mr:
+  - text: Is the MR powered by PoE switch, PoE injector or power adapter?
+  utter_ask_laptop_bypass:
+  - text: If you plug the appliance's uplink cable into another device like a laptop, are you able to browse the internet on it?
+  utter_ask_uplink_lights:
+  - text: Do you see any link lights on the uplink port?
+  utter_ask_uplink_check:
+  - text: |
+      Does the issue persist after performing the following troubleshooting steps for the uplink port?
+      - Try using a different known working cable and ensure that it is less than 100 meters in length;
+      - Try using a different port on both the local and upstream devices;
+      - Try using a different upstream device;
+      - Check if the Link negotiation settings are the same on both the local and upstream devices;
+      - If SFP port is being used, try a different SFP module and ensure that you are using a Meraki SFP module;
+      - If the uplink port is connected to a patch panel, unplug it from the patch panel and connect it directly to the upstream device;
+  utter_ask_lsp_access:
+  - text: Are you able to access the local status page?
+  utter_ask_lsp_allowed:
+  - text: |
+      Are you able to access the local status page after confirming that it is enabled in Network-wide → General → "Device configuration" section?
+      Note that you will need to enable the local status page access and factory reset the device if it was disabled.
+  utter_ask_client_lights:
+  - text: Are there any link lights on the port where the client device is connected?
+  utter_ask_client_layer1:
+  - text: Do you see a link light after using a different known working cable, port and laptop?
+  utter_ask_client_check:
+  - text: |
+      Are you able to access the local status page after performing the following troubleshooting steps?
+      - Check if the client device is receiving an IP address and if it doesn't, assign a static IP address;
+      - Try using a different web browser;
+      - Ensure that Wifi is disabled on the client device;
+      - Try using a different client device;
+      - Try using a different known working cable;
+      - Try using a different port on the device;
+  utter_ask_lsp_wireless:
+  - text: |
+      Are you able to access the local status page after performing the following troubleshooting steps?
+      1) Check for available wireless networks and find a default SSID that is being broadcasted. Potential known default SSID names:
+        Meraki Setup
+        meraki
+        <SSID_name>-bad-gateway
+        <SSID_name>-connecting
+        <SSID_name>-scanning
+      2) If no known default SSIDs are present then physically inspect the AP and copy the MAC address that can be found on the sticker of the device;
+      3) Set up a manual wireless network connection. For the SSID name, use 'meraki-<MAC_Address>' e.g. 'meraki-xx:xx:xx:xx:xx:xx', replace the x's with the AP's MAC address in lower case.
+      4) If you are still not able to access the local status page then try using a different web browser and laptop;
+  utter_ask_lsp_check:
+  - text: Is the device still unreachable after confirming via the local status page that it has a correct IP address and vlan configured? If it is using DHCP, assign a static IP address so we could rule out if the problem is DHCP-related;
+  utter_ask_upstream_access:
+  - text: |
+      Please confirm that the following has been allowed in the upstream infrastructure:
+      - IPs and ports mentioned in Help → Firewall info page;
+      - VLAN used by the Meraki device;
+  utter_ask_check_stp:
+  - text: Does the issue persist after confirming that the core switch in the network is acting as RSTP root switch? If a non-core switch is acting as RSTP root then it might cause in incorrect logical topology being built, blocking in turn the wrong ports that might prevent the switch from communicating with the cloud.
+  utter_ask_uplink_pcap:
+  - text: Do we have a packet capture taken on the upstream device?
+  utter_ask_pcap_source_any:
+  - text: Do you see any incoming packets sent by the Meraki device?
+  utter_ask_connection_monitor:
+  - text: In the packet capture, is bidirectional traffic seen for ARP, DNS, ICMP and tunnel tests that the Merakid evice is performing?
+  utter_ask_factory_reset:
+  - text: |
+      Does the issue persist after performing the following troubleshooting steps?
+      1) Reboot;
+      2) Factory reset;
+  utter_ask_factory_reset_stack:
+  - text: |
+      Does the issue persist after performing the following troubleshooting steps?
+      1) Reboot the affected switch;
+      2) Reboot the entire stack;
+      3) Factory reset the affected switch;
+      4) Remove the switch from the stack and connect it as a standalone switch;
+  utter_ask_check_stack:
+  - text: Is the switch part of the stack?
+  utter_rma:
+  - text: The unit is faulty and needs an RMA.
+  utter_chat_end:
+  - text: Thank you for using this chatbot. Please let me know if there is anything else I can help you with.
+
+actions:
+- utter_did_that_help
+- utter_goodbye
+- utter_greet
+- utter_ask_power_led_color
+- utter_ask_device_type
+- utter_ask_power_mx_ms
+- utter_ask_power_source_mr
+- utter_ask_power_poe_switch
+- utter_ask_power_poe_injector
+- utter_ask_laptop_bypass
+- utter_ask_uplink_lights
+- utter_ask_uplink_check
+- utter_ask_lsp_access
+- utter_ask_lsp_allowed
+- utter_ask_client_lights
+- utter_ask_client_layer1
+- utter_ask_client_check
+- utter_ask_lsp_wireless
+- utter_ask_lsp_check
+- utter_ask_upstream_access
+- utter_ask_check_stp
+- utter_ask_uplink_pcap
+- utter_ask_connection_monitor
+- utter_ask_pcap_source_any
+- utter_ask_check_stack
+- utter_ask_factory_reset
+- utter_ask_factory_reset_stack
+- utter_rma
+- utter_chat_end
+- validate_tshoot_form
+- action_reset_all_slots

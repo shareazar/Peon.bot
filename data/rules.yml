@@ -1,0 +1,36 @@
+version: '3.1'
+
+rules:
+
+- rule: welcome user
+  conversation_start: true
+  steps:
+  - intent: greet
+  - action: utter_greet_start
+
+- rule: greet user
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Say 'zug zug' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_zugzug
+
+- rule: Activate tshoot_form
+  steps:
+  - intent: unreachable
+  - action: tshoot_form
+  - active_loop: tshoot_form
+
+- rule: Submit tshoot_form
+  condition:
+  - active_loop: tshoot_form
+  steps:
+  - action: tshoot_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_reset_all_slots
+  - action: utter_chat_end
