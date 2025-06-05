@@ -4,17 +4,13 @@
 
 ## Features
 
-### Collecting [mx utilization logs](https://documentation.meraki.com/MX/Monitoring_and_Reporting/Device_Utilization):
-![](gifs/mx-logs.gif)
-
-### Collecting [mr logs](https://documentation.meraki.com/Meraki_Internal/Support/Mules/INTERNAL%3A_Troubleshoot_Wireless_Clients_Activity):
-![](gifs/mr-logs.gif)
-
-### Tshooting mx/mr/ms being unreachable in the dashboard:
+### 1. Tshooting mx/mr/ms being unreachable in the dashboard:
 ![](gifs/unreachable.gif)
 
-### (in progress) Listing the commands:
-![](gifs/find_commands.gif)
+
+<ins>**Please note that this repo does not include the features listed below as they include sensitive information:**</ins>
+### 2. Collecting backend logs;
+### 3. (in progress) Listing the commands.
 
 
 ## Installation:
@@ -32,9 +28,6 @@ pip install rasa==3.5.10<br>
 
 You should now be able to confirm that Rasa is installed with the following command:<br>
 rasa -h<br>
-
-4) Once the above is done, open settings.txt in Peon.bot folder and add your username (firstname.lastname) into the "user=" field.
-5) Ensure that your id_rsa key is in ~/.ssh/id_rsa folder. On Windows systems the full path of the file is usually C:\Users\\<firstname.lastname>\\.ssh\id_rsa"
 
 
 ## How to launch:
