@@ -8,9 +8,9 @@
 ![](gifs/unreachable.gif)
 
 
-<ins>**Please note that this repo does not include the features listed below as they include sensitive information:**</ins>
-### 2. Collecting backend logs;
-### 3. (in progress) Listing the commands.
+<ins>**Please note that this repo does not currently include the features listed below, they will be added later:**</ins>
+### 2. Collecting server logs;
+### 3. Listing the commands.
 
 
 ## Installation:
